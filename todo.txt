@@ -1,0 +1,199 @@
+block types:
+  buttons:
+    wood
+    stone
+  pressure plates:
+    wood
+    stone
+    light
+    heavy
+  door: (?)
+    wood
+    metal
+  trapdoor: (?)
+    wood
+    metal
+  gate
+  fence
+  wall
+  metal bars (?)
+  slab
+  stairs
+  ladder (?)
+  sign
+  lever (?)
+  vertical slabs (?)
+
+materials:
+  planks:
+    acacia
+    birch
+    dark oak
+    jungle
+    oak
+    spruce
+    crimson
+    warped
+  rocks:
+    andesite
+    basalt (?)
+    bedrock
+    blackstone
+    terracotta
+    colored terracottas
+    glazed terracottas (?)
+    bricks
+    concretes
+    calcite
+    chiseled deepslate
+    chiseled nether bricks
+    chiseled polished blackstone
+    chiseled quartz block
+    chiseled red sandstone
+    chiseled sandstone
+    chiseled stone bricks
+    cobbled deepslate
+    cobblestone
+    cracked deepslate bricks
+    cracked deepslate tiles
+    cracked nether bricks
+    cracked polished blackstone bricks
+    cracked stone bricks
+    crying obsidian
+    cut red sandstone
+    cut sandstone
+    dark prismarine
+    deepslate
+    deepslate bricks
+    deepslate tiles
+    diorite
+    dripstone
+    end stone
+    end stone bricks
+    gilded blackstone
+    glowstone
+    granite
+    magma block
+    mossy cobblestone
+    mossy stone bricks
+    nether bricks
+    netherrack
+    obsidian
+    polished andesite
+    polished basalt
+    polished blackstone
+    polished blackstone bricks
+    polished deepslate
+    polished diorite
+    polished granite
+    prismarine
+    purpur
+    quartz
+    quartz bricks
+    red sandstone
+    sandstone
+    sea lantern
+    smooth basalt
+    smooth quartz
+    smooth red sandtone
+    smooth sandstone
+    smooth stone
+    stone
+    stone bricks
+    tuff
+    stone ores:
+      coal
+      copper
+      diamond
+      emerald
+      gold
+      iron
+      lapis lazuli
+      redstone
+    deepslate ores:
+      coal
+      copper
+      diamond
+      emerald
+      gold
+      iron
+      lapis lazuli
+      redstone
+    nether ores:
+      quartz
+      gold
+      ancient debris
+  powders:
+    sand
+    red sand
+    gravel
+    concrete powders
+  ore blocks:
+    amethyst
+    coal
+    diamond
+    emerald
+    gold
+    iron
+    lapis lazuli
+    raw copper
+    raw gold
+    raw iron
+    redstone
+    gold
+    iron
+    netherite
+    copper
+    exposed copper
+    weathered copper
+    oxidized copper
+    cut copper
+    exposed cut copper
+    weathered cut copper
+    oxidized cut copper
+    waxed copper
+    waxed exposed copper
+    waxed weathered copper
+    waxed oxidized copper
+    waxed cut copper
+    waxed exposed cut copper
+    waxed weathered cut copper
+    waxed oxidized cut copper
+  glass-like:
+    glass
+    stained glass
+    tinted glass
+  other:
+    blue ice
+    charcoal block
+    wools
+    bone (?)
+    dead corals
+    living corals
+    clay
+    coarse dirt
+    crimson nylium
+    dirt
+    grass block (?)
+    honeycomb block
+    ice (?)
+    moss block
+    mycelium (?)
+    nether wart
+    packed ice
+    podzol (?)
+    rooted dirt
+    snow
+    sponge/wet sponge (?)
+    soul sand
+    soul soil
+    mushrooms (?):
+      red
+      brown
+      stem
+    pumpkin
+    shroomlight
+    warped nylium
+    warped wart
+    dried kelp (?)
+    leaves (?)

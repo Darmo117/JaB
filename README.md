@@ -6,7 +6,7 @@ The mod’s name is French for *all the way*.
 
 Requirements:
 
-* Minecraft 1.18.2+
+* Minecraft 1.18.2
 * Fabric 0.53.0+
 * Fabric Loader 0.14.6+
 

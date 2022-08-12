@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "jab",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Jusqu’au bout",
+  "description": "A simple mod that adds decorating blocks missing from Vanilla.",
   "authors": [
-    "Me!"
+    "Darmo"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/Darmo117/JaB",
+    "sources": "https://github.com/Darmo117/JaB"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "GPLv3",
+  "icon": "icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.darmo_creations.jab.JaB"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "jab.mixins.json"
   ],
 
   "depends": {
