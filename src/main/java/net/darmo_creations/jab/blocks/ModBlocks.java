@@ -1,10 +1,7 @@
 package net.darmo_creations.jab.blocks;
 
 import net.darmo_creations.jab.JaB;
-import net.darmo_creations.jab.blocks.behaviors.ConcretePowderBlockBehavior;
-import net.darmo_creations.jab.blocks.behaviors.FallingBlockBehavior;
-import net.darmo_creations.jab.blocks.behaviors.LivingCoralBlockBehavior;
-import net.darmo_creations.jab.blocks.behaviors.RedstoneOreBlockBehavior;
+import net.darmo_creations.jab.blocks.behaviors.*;
 import net.darmo_creations.jab.mixins.FireBlockMixin;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -179,14 +176,6 @@ public final class ModBlocks {
         BlockMaterial.WAXED_EXPOSED_COPPER,
         BlockMaterial.WAXED_WEATHERED_COPPER,
         BlockMaterial.WAXED_OXIDIZED_COPPER,
-        BlockMaterial.CUT_COPPER,
-        BlockMaterial.EXPOSED_CUT_COPPER,
-        BlockMaterial.WEATHERED_CUT_COPPER,
-        BlockMaterial.OXIDIZED_CUT_COPPER,
-        BlockMaterial.WAXED_CUT_COPPER,
-        BlockMaterial.WAXED_CUT_EXPOSED_COPPER,
-        BlockMaterial.WAXED_CUT_WEATHERED_COPPER,
-        BlockMaterial.WAXED_CUT_OXIDIZED_COPPER,
         BlockMaterial.DIAMOND,
         BlockMaterial.EMERALD,
         BlockMaterial.IRON,
@@ -311,6 +300,8 @@ public final class ModBlocks {
       blockProvider = livingCoralBlockProvider;
     } else if (material.getBlockBehaviorClass() == RedstoneOreBlockBehavior.class) {
       blockProvider = redstoneOreBlockProvider;
+    } else if (material.getBlockBehaviorClass() == OxidizableBlockBehavior.class) {
+      blockProvider = oxidizableBlockProvider;
     } else {
       blockProvider = genericBlockProvider;
     }
