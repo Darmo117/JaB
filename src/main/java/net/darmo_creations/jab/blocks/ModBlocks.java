@@ -2,11 +2,13 @@ package net.darmo_creations.jab.blocks;
 
 import net.darmo_creations.jab.JaB;
 import net.darmo_creations.jab.blocks.behaviors.*;
-import net.darmo_creations.jab.mixins.FireBlockMixin;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.minecraft.block.*;
+import net.fabricmc.fabric.impl.content.registry.FlammableBlockRegistryImpl;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -20,10 +22,12 @@ import java.util.function.Function;
 @SuppressWarnings("unused")
 public final class ModBlocks {
   public static final Block CHARCOAL_BLOCK =
-      register("charcoal_block", new Block(AbstractBlock.Settings.of(Material.WOOD, MapColor.BLACK).requiresTool().strength(5, 6)));
+      register("charcoal_block", new Block(AbstractBlock.Settings.copy(Blocks.COAL_BLOCK)));
 
   static {
     FlammableBlockRegistry.getDefaultInstance().add(CHARCOAL_BLOCK, 5, 5);
+    // Force reload of internal cache in order for get() method to work afterwards
+    ((FlammableBlockRegistryImpl) FlammableBlockRegistry.getDefaultInstance()).reload(null);
   }
 
   public static final Map<BlockMaterial, Block> WOODEN_BUTTONS = new HashMap<>();
@@ -272,16 +276,16 @@ public final class ModBlocks {
    * @param block The block.
    */
   private static void setFlammability(DecoratedBlock block) {
-    FireBlockMixin fireBlock = (FireBlockMixin) Blocks.FIRE;
+    FlammableBlockRegistryImpl fireRegistry = (FlammableBlockRegistryImpl) FlammableBlockRegistry.getDefaultInstance();
     Block baseBlock = block.getMaterial().getBaseBlock();
-    BlockState defaultState = baseBlock.getDefaultState();
-    int burnChance = fireBlock.invokeGetBurnChance(defaultState);
-    if (burnChance != 0) {
-      FlammableBlockRegistry.getDefaultInstance().add((Block) block, burnChance, fireBlock.invokeGetSpreadChance(defaultState));
-    } else if (FlammableBlockRegistry.getDefaultInstance().get(baseBlock) != null) {
-      // FIXME
-      FlammableBlockRegistry.Entry entry = FlammableBlockRegistry.getDefaultInstance().get(baseBlock);
-      FlammableBlockRegistry.getDefaultInstance().add((Block) block, entry.getBurnChance(), entry.getSpreadChance());
+    FlammableBlockRegistry.Entry entry = fireRegistry.getFabric(baseBlock);
+    if (entry == null) {
+      entry = fireRegistry.get(baseBlock); // Fall back on entry for vanilla fire block
+    }
+    int burnChance = entry.getBurnChance();
+    int spreadChance = entry.getSpreadChance();
+    if (burnChance != 0 && spreadChance != 0) {
+      fireRegistry.add((Block) block, burnChance, spreadChance);
     }
   }
 

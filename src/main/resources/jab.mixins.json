@@ -4,8 +4,7 @@
   "package": "net.darmo_creations.jab.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ConcretePowderBlockMixin",
-    "FireBlockMixin"
+    "ConcretePowderBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
