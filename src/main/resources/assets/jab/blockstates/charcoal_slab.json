@@ -7,7 +7,7 @@
       "model": "jab:block/slab/charcoal_slab_top"
     },
     "type=double": {
-      "model": "minecraft:block/charcoal_block"
+      "model": "jab:block/charcoal_block"
     }
   }
 }
