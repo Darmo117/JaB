@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "jab:block/slab/brain_coral_slab"
+    },
+    "type=top": {
+      "model": "jab:block/slab/brain_coral_slab_top"
+    },
+    "type=double": {
+      "model": "minecraft:block/brain_coral_block"
+    }
+  }
+}

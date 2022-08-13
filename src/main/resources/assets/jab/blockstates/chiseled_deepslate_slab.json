@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "jab:block/slab/chiseled_deepslate_slab"
+    },
+    "type=top": {
+      "model": "jab:block/slab/chiseled_deepslate_slab_top"
+    },
+    "type=double": {
+      "model": "minecraft:block/chiseled_deepslate"
+    }
+  }
+}
