@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "jab:block/slab/crying_obsidian_slab"
+    },
+    "type=top": {
+      "model": "jab:block/slab/crying_obsidian_slab_top"
+    },
+    "type=double": {
+      "model": "minecraft:block/crying_obsidian"
+    }
+  }
+}
