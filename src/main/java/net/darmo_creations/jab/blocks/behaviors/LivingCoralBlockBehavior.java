@@ -53,6 +53,9 @@ public class LivingCoralBlockBehavior extends BlockBehavior {
   }
 
   protected boolean isNotInWater(BlockView world, BlockPos pos) {
+    if (world.getFluidState(pos).isIn(FluidTags.WATER)) {
+      return false;
+    }
     for (Direction direction : Direction.values()) {
       FluidState fluidState = world.getFluidState(pos.offset(direction));
       if (fluidState.isIn(FluidTags.WATER)) {
