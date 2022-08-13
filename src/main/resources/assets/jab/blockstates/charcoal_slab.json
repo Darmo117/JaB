@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "jab:block/slab/charcoal_slab"
+    },
+    "type=top": {
+      "model": "jab:block/slab/charcoal_slab_top"
+    },
+    "type=double": {
+      "model": "minecraft:block/charcoal_block"
+    }
+  }
+}

@@ -21,9 +21,13 @@ def generate_item_model():
 
 
 block_type = types.BlockType(sys.argv[1])
-block_name = sys.argv[2]
-base_block_name = sys.argv[3]
+material_name = sys.argv[2]
+block_name = f'{material_name}_{block_type.value}'
+base_block_name = sys.argv[3] if len(sys.argv) >= 4 else material_name
 textures = sys.argv[4:]
+if not textures:
+    if block_type == types.BlockType.SLAB:
+        textures = [base_block_name] * 3
 
 generate_blockstate()
 generate_block_models()

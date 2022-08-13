@@ -273,10 +273,15 @@ public final class ModBlocks {
    */
   private static void setFlammability(DecoratedBlock block) {
     FireBlockMixin fireBlock = (FireBlockMixin) Blocks.FIRE;
-    BlockState defaultState = block.getMaterial().getBaseBlock().getDefaultState();
+    Block baseBlock = block.getMaterial().getBaseBlock();
+    BlockState defaultState = baseBlock.getDefaultState();
     int burnChance = fireBlock.invokeGetBurnChance(defaultState);
     if (burnChance != 0) {
       FlammableBlockRegistry.getDefaultInstance().add((Block) block, burnChance, fireBlock.invokeGetSpreadChance(defaultState));
+    } else if (FlammableBlockRegistry.getDefaultInstance().get(baseBlock) != null) {
+      // FIXME
+      FlammableBlockRegistry.Entry entry = FlammableBlockRegistry.getDefaultInstance().get(baseBlock);
+      FlammableBlockRegistry.getDefaultInstance().add((Block) block, entry.getBurnChance(), entry.getSpreadChance());
     }
   }
 
