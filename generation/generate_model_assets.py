@@ -1,4 +1,5 @@
 import sys
+import time
 
 from modules import io, blockstate_generators, block_model_generators, types, utils
 
@@ -29,6 +30,9 @@ if not textures:
     if block_type == types.BlockType.SLAB:
         textures = [base_block_name] * 3
 
+start = time.time()
+print(f'Generating blockstate and models for {block_name}…')
 generate_blockstate()
 generate_block_models()
 generate_item_model()
+print(f'Done in {(time.time() - start) * 1000} ms')
