@@ -1,5 +1,6 @@
 package net.darmo_creations.jab.blocks.behaviors;
 
+import net.darmo_creations.jab.blocks.GravityBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.fluid.Fluids;
@@ -20,9 +21,7 @@ import java.util.Random;
 public class FallingBlockBehavior extends BlockBehavior implements LandingBlock {
   public FallingBlockBehavior(final Block block) {
     super(block);
-    if (!(block instanceof LandingBlock)) {
-      throw new IllegalArgumentException("block does not implement LandingBlock interface");
-    }
+    ensureBlockType(GravityBlock.class, block);
   }
 
   @Override

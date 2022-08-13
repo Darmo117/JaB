@@ -30,13 +30,7 @@ import java.util.Random;
 public class OxidizableBlockBehavior extends BlockBehavior implements Oxidizable {
   public OxidizableBlockBehavior(Block block) {
     super(block);
-    if (!(block instanceof OxidizableBlock)) {
-      throw new IllegalArgumentException("block does not implement OxidizableBlock interface");
-    }
-  }
-
-  protected OxidizableBlock getBlock() {
-    return (OxidizableBlock) this.block;
+    ensureBlockType(OxidizableBlock.class, block);
   }
 
   @Override
@@ -44,7 +38,7 @@ public class OxidizableBlockBehavior extends BlockBehavior implements Oxidizable
     ItemStack itemStack = player.getStackInHand(hand);
     // Wax block
     if (itemStack.getItem() instanceof HoneycombItem) {
-      BlockState waxedState = this.getBlock().getWaxedBlockState(state);
+      BlockState waxedState = this.<OxidizableBlock>getBlock().getWaxedBlockState(state);
       if (player instanceof ServerPlayerEntity p) {
         Criteria.ITEM_USED_ON_BLOCK.trigger(p, pos, itemStack);
       }
@@ -61,7 +55,7 @@ public class OxidizableBlockBehavior extends BlockBehavior implements Oxidizable
       if (player instanceof ServerPlayerEntity p) {
         Criteria.ITEM_USED_ON_BLOCK.trigger(p, pos, itemStack);
       }
-      world.setBlockState(pos, this.getBlock().getPreviousOxidationBlockState(state), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
+      world.setBlockState(pos, this.<OxidizableBlock>getBlock().getPreviousOxidationBlockState(state), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
       if (!player.isCreative()) {
         itemStack.damage(1, player, p -> p.sendToolBreakStatus(hand));
       }
@@ -86,11 +80,11 @@ public class OxidizableBlockBehavior extends BlockBehavior implements Oxidizable
   public Optional<BlockState> getDegradationResult(BlockState state) {
     // Value should never be null as no random ticks are fired if fully oxidized
     //noinspection ConstantConditions
-    return Optional.of(this.getBlock().getNextOxidationBlockState(state));
+    return Optional.of(this.<OxidizableBlock>getBlock().getNextOxidationBlockState(state));
   }
 
   @Override
   public OxidationLevel getDegradationLevel() {
-    return this.getBlock().getDegradationLevel();
+    return this.<OxidizableBlock>getBlock().getDegradationLevel();
   }
 }

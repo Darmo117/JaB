@@ -2,7 +2,6 @@ package net.darmo_creations.jab.blocks;
 
 import net.darmo_creations.jab.blocks.behaviors.FallingBlockBehavior;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LandingBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -14,7 +13,7 @@ import java.util.function.Predicate;
 /**
  * A slab that is sensitive to gravity.
  */
-public class FallingSlabBlock extends DecoratedSlabBlock implements LandingBlock {
+public class FallingSlabBlock extends DecoratedSlabBlock implements GravityBlock {
   public FallingSlabBlock(final BlockMaterial material) {
     super(material);
     DecoratedBlock.checkBehaviorType(FallingBlockBehavior.class, material);

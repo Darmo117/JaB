@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 /**
  * Marks a block as being made of concrete powder.
  */
-public interface ConcretePowderBlock extends DecoratedBlock {
+public interface ConcretePowderBlock extends GravityBlock {
   /**
    * Returns the hardened concrete block state that corresponds to this block.
    * The resulting block state should have the same property values as the argument.

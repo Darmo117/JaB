@@ -349,16 +349,6 @@ public enum BlockMaterial {
   }
 
   /**
-   * Returns whether this material is oxidizable and waxed.
-   */
-  public boolean isWaxed() {
-    return Arrays.asList(
-        WAXED_COPPER, WAXED_EXPOSED_COPPER, WAXED_WEATHERED_COPPER, WAXED_OXIDIZED_COPPER,
-        WAXED_CUT_COPPER, WAXED_EXPOSED_CUT_COPPER, WAXED_WEATHERED_CUT_COPPER, WAXED_OXIDIZED_CUT_COPPER
-    ).contains(this);
-  }
-
-  /**
    * Returns the hardened concrete material associated to this material.
    * Will be null for materials that are not a type of concrete powder.
    */

@@ -1,5 +1,6 @@
 package net.darmo_creations.jab.blocks.behaviors;
 
+import net.darmo_creations.jab.blocks.DecoratedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -30,7 +31,13 @@ public class BlockBehavior {
   protected final Block block;
 
   public BlockBehavior(final Block block) {
+    ensureBlockType(DecoratedBlock.class, block);
     this.block = block;
+  }
+
+  protected <T extends DecoratedBlock> T getBlock() {
+    //noinspection unchecked
+    return (T) this.block;
   }
 
   public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
@@ -96,5 +103,18 @@ public class BlockBehavior {
 
   public Optional<PistonBehavior> getPistonBehavior(BlockState state) {
     return Optional.empty();
+  }
+
+  /**
+   * Checks that the given block inherits the given class.
+   *
+   * @param expectedClass Class the block should inherit from.
+   * @param block         The block to check.
+   * @throws IllegalArgumentException If the block does not inherit the given class.
+   */
+  protected static void ensureBlockType(final Class<? extends DecoratedBlock> expectedClass, final Block block) {
+    if (!expectedClass.isAssignableFrom(block.getClass())) {
+      throw new IllegalArgumentException("block does not implement %s interface".formatted(expectedClass.getSimpleName()));
+    }
   }
 }

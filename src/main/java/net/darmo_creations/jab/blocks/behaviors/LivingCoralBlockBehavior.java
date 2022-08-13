@@ -20,19 +20,13 @@ import java.util.Random;
 public class LivingCoralBlockBehavior extends BlockBehavior {
   public LivingCoralBlockBehavior(final Block block) {
     super(block);
-    if (!(block instanceof LivingCoralBlock)) {
-      throw new IllegalArgumentException("block does not implement LivingCoralBlock interface");
-    }
-  }
-
-  protected LivingCoralBlock getBlock() {
-    return (LivingCoralBlock) this.block;
+    ensureBlockType(LivingCoralBlock.class, block);
   }
 
   @Override
   public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
     if (this.isNotInWater(world, pos)) {
-      world.setBlockState(pos, this.getBlock().getDeadBlockState(state));
+      world.setBlockState(pos, this.<LivingCoralBlock>getBlock().getDeadBlockState(state));
     }
   }
 

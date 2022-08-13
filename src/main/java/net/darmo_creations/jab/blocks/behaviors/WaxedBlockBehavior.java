@@ -26,13 +26,7 @@ import java.util.Optional;
 public class WaxedBlockBehavior extends BlockBehavior {
   public WaxedBlockBehavior(Block block) {
     super(block);
-    if (!(block instanceof WaxedBlock)) {
-      throw new IllegalArgumentException("block does not implement WaxedBlock interface");
-    }
-  }
-
-  protected WaxedBlock getBlock() {
-    return (WaxedBlock) this.block;
+    ensureBlockType(WaxedBlock.class, block);
   }
 
   @Override
@@ -47,7 +41,7 @@ public class WaxedBlockBehavior extends BlockBehavior {
     if (player instanceof ServerPlayerEntity p) {
       Criteria.ITEM_USED_ON_BLOCK.trigger(p, pos, itemStack);
     }
-    world.setBlockState(pos, this.getBlock().getUnwaxedBlockState(state), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
+    world.setBlockState(pos, this.<WaxedBlock>getBlock().getUnwaxedBlockState(state), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
     if (!player.isCreative()) {
       itemStack.damage(1, player, p -> p.sendToolBreakStatus(hand));
     }

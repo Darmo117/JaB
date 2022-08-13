@@ -18,13 +18,7 @@ import net.minecraft.world.WorldAccess;
 public class ConcretePowderBlockBehavior extends FallingBlockBehavior {
   public ConcretePowderBlockBehavior(final Block block) {
     super(block);
-    if (!(block instanceof ConcretePowderBlock)) {
-      throw new IllegalArgumentException("block does not implement ConcretePowderBlock interface");
-    }
-  }
-
-  protected ConcretePowderBlock getBlock() {
-    return (ConcretePowderBlock) this.block;
+    ensureBlockType(ConcretePowderBlock.class, block);
   }
 
   @Override
@@ -32,7 +26,7 @@ public class ConcretePowderBlockBehavior extends FallingBlockBehavior {
     super.onLanding(world, pos, fallingBlockState, currentStateInPos, fallingBlockEntity);
     if (ConcretePowderBlockMixin.invokeShouldHarden(world, pos, currentStateInPos)) {
       // Cannot use fallingBlockState as it may have been modified by super method
-      world.setBlockState(pos, this.getBlock().getHardenedBlockState(world.getBlockState(pos)));
+      world.setBlockState(pos, this.<ConcretePowderBlock>getBlock().getHardenedBlockState(world.getBlockState(pos)));
     }
   }
 
@@ -41,7 +35,7 @@ public class ConcretePowderBlockBehavior extends FallingBlockBehavior {
     BlockPos blockPos = ctx.getBlockPos();
     World blockView = ctx.getWorld();
     if (ConcretePowderBlockMixin.invokeShouldHarden(blockView, blockPos, blockView.getBlockState(blockPos))) {
-      return this.getBlock().getHardenedBlockState(superState);
+      return this.<ConcretePowderBlock>getBlock().getHardenedBlockState(superState);
     }
     return super.getPlacementState(superState, ctx);
   }
@@ -49,7 +43,7 @@ public class ConcretePowderBlockBehavior extends FallingBlockBehavior {
   @Override
   public BlockState getStateForNeighborUpdate(BlockState superState, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
     if (ConcretePowderBlockMixin.invokeHardensOnAnySide(world, pos)) {
-      return this.getBlock().getHardenedBlockState(superState);
+      return this.<ConcretePowderBlock>getBlock().getHardenedBlockState(superState);
     }
     return super.getStateForNeighborUpdate(superState, direction, neighborState, world, pos, neighborPos);
   }
