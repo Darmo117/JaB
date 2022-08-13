@@ -114,7 +114,7 @@ public class BlockBehavior {
    */
   protected static void ensureBlockType(final Class<? extends DecoratedBlock> expectedClass, final Block block) {
     if (!expectedClass.isAssignableFrom(block.getClass())) {
-      throw new IllegalArgumentException("block does not implement %s interface".formatted(expectedClass.getSimpleName()));
+      throw new IllegalArgumentException("class %s does not inherit %s interface".formatted(block.getClass().getSimpleName(), expectedClass.getSimpleName()));
     }
   }
 }

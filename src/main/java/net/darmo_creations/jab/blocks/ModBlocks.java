@@ -64,6 +64,7 @@ public final class ModBlocks {
         RedstoneOreSlabBlock::new,
         OxidizableSlabBlock::new,
         WaxedSlabBlock::new,
+        TransparentSlab::new,
         BlockMaterial.ANCIENT_DEBRIS,
         BlockMaterial.BEDROCK,
         BlockMaterial.CALCITE,
@@ -255,12 +256,13 @@ public final class ModBlocks {
       Map<BlockMaterial, Block> registry,
       final String suffix,
       final Function<BlockMaterial, ? extends DecoratedBlock> genericBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> fallingBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> concretePowderBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> livingCoralBlockProvider,
+      final Function<BlockMaterial, ? extends GravityBlock> fallingBlockProvider,
+      final Function<BlockMaterial, ? extends ConcretePowderBlock> concretePowderBlockProvider,
+      final Function<BlockMaterial, ? extends LivingCoralBlock> livingCoralBlockProvider,
       final Function<BlockMaterial, ? extends DecoratedBlock> redstoneOreBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> oxidizableBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> waxedBlockProvider,
+      final Function<BlockMaterial, ? extends OxidizableBlock> oxidizableBlockProvider,
+      final Function<BlockMaterial, ? extends WaxedBlock> waxedBlockProvider,
+      final Function<BlockMaterial, ? extends TransparentBlock> transparentBlockProvider,
       final BlockMaterial... materials
   ) {
     Objects.requireNonNull(suffix);
@@ -273,7 +275,8 @@ public final class ModBlocks {
           livingCoralBlockProvider,
           redstoneOreBlockProvider,
           oxidizableBlockProvider,
-          waxedBlockProvider
+          waxedBlockProvider,
+          transparentBlockProvider
       );
       DecoratedBlock block = blockProvider.apply(material);
       registry.put(material, register(material.getName() + suffix, (Block) block));
@@ -286,7 +289,7 @@ public final class ModBlocks {
    *
    * @param block The block.
    */
-  private static void setFlammability(DecoratedBlock block) {
+  private static void setFlammability(final DecoratedBlock block) {
     FlammableBlockRegistryImpl fireRegistry = (FlammableBlockRegistryImpl) FlammableBlockRegistry.getDefaultInstance();
     Block baseBlock = block.getMaterial().getBaseBlock();
     FlammableBlockRegistry.Entry entry = fireRegistry.getFabric(baseBlock);
@@ -301,28 +304,32 @@ public final class ModBlocks {
   }
 
   private static Function<BlockMaterial, ? extends DecoratedBlock> getBlockProvider(
-      BlockMaterial material,
-      Function<BlockMaterial, ? extends DecoratedBlock> genericBlockProvider,
-      Function<BlockMaterial, ? extends DecoratedBlock> fallingBlockProvider,
-      Function<BlockMaterial, ? extends DecoratedBlock> concretePowderBlockProvider,
-      Function<BlockMaterial, ? extends DecoratedBlock> livingCoralBlockProvider,
-      Function<BlockMaterial, ? extends DecoratedBlock> redstoneOreBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> oxidizableBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> waxedBlockProvider
+      final BlockMaterial material,
+      final Function<BlockMaterial, ? extends DecoratedBlock> genericBlockProvider,
+      final Function<BlockMaterial, ? extends GravityBlock> fallingBlockProvider,
+      final Function<BlockMaterial, ? extends ConcretePowderBlock> concretePowderBlockProvider,
+      final Function<BlockMaterial, ? extends LivingCoralBlock> livingCoralBlockProvider,
+      final Function<BlockMaterial, ? extends DecoratedBlock> redstoneOreBlockProvider,
+      final Function<BlockMaterial, ? extends OxidizableBlock> oxidizableBlockProvider,
+      final Function<BlockMaterial, ? extends WaxedBlock> waxedBlockProvider,
+      final Function<BlockMaterial, ? extends TransparentBlock> transparentBlockProvider
   ) {
     Function<BlockMaterial, ? extends DecoratedBlock> blockProvider;
-    if (material.getBlockBehaviorClass() == FallingBlockBehavior.class) {
-      blockProvider = fallingBlockProvider;
-    } else if (material.getBlockBehaviorClass() == ConcretePowderBlockBehavior.class) {
+    Class<? extends BlockBehavior> behaviorClass = material.getBlockBehaviorClass();
+    if (ConcretePowderBlockBehavior.class.isAssignableFrom(behaviorClass)) {
       blockProvider = concretePowderBlockProvider;
-    } else if (material.getBlockBehaviorClass() == LivingCoralBlockBehavior.class) {
+    } else if (FallingBlockBehavior.class.isAssignableFrom(behaviorClass)) {
+      blockProvider = fallingBlockProvider;
+    } else if (LivingCoralBlockBehavior.class.isAssignableFrom(behaviorClass)) {
       blockProvider = livingCoralBlockProvider;
-    } else if (material.getBlockBehaviorClass() == RedstoneOreBlockBehavior.class) {
+    } else if (RedstoneOreBlockBehavior.class.isAssignableFrom(behaviorClass)) {
       blockProvider = redstoneOreBlockProvider;
-    } else if (material.getBlockBehaviorClass() == OxidizableBlockBehavior.class) {
+    } else if (OxidizableBlockBehavior.class.isAssignableFrom(behaviorClass)) {
       blockProvider = oxidizableBlockProvider;
-    } else if (material.getBlockBehaviorClass() == WaxedBlockBehavior.class) {
+    } else if (WaxedBlockBehavior.class.isAssignableFrom(behaviorClass)) {
       blockProvider = waxedBlockProvider;
+    } else if (TransparentBlockBehavior.class.isAssignableFrom(behaviorClass)) {
+      blockProvider = transparentBlockProvider;
     } else {
       blockProvider = genericBlockProvider;
     }
