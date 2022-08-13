@@ -14,8 +14,6 @@ import net.minecraft.util.registry.Registry;
 import java.util.*;
 import java.util.function.Function;
 
-// TODO flammability, ice melting, grass growing, etc.
-
 /**
  * Declares all blocks added by this mod.
  */

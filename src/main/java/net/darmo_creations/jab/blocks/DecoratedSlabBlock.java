@@ -97,12 +97,6 @@ public class DecoratedSlabBlock extends SlabBlock implements DecoratedBlock {
 
   @SuppressWarnings("deprecation")
   @Override
-  public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-    this.behavior.onStacksDropped(state, world, pos, stack);
-  }
-
-  @SuppressWarnings("deprecation")
-  @Override
   public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
     this.behavior.onBlockBreakStart(state, world, pos, player);
   }

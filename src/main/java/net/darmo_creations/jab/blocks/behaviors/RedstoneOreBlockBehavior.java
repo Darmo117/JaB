@@ -37,12 +37,12 @@ public class RedstoneOreBlockBehavior extends BlockBehavior {
   @Override
   public Optional<ActionResult> onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
     //noinspection deprecation
-    return Optional.of(Blocks.REDSTONE_BLOCK.onUse(state, world, pos, player, hand, hit));
+    return Optional.of(Blocks.REDSTONE_ORE.onUse(state, world, pos, player, hand, hit));
   }
 
   @Override
   public Optional<Boolean> hasRandomTicks(BlockState state) {
-    return Optional.of(Blocks.REDSTONE_BLOCK.hasRandomTicks(state));
+    return Optional.of(Blocks.REDSTONE_ORE.hasRandomTicks(state));
   }
 
   @Override

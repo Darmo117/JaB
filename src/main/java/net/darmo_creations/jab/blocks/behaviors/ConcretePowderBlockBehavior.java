@@ -31,7 +31,8 @@ public class ConcretePowderBlockBehavior extends FallingBlockBehavior {
   public void onLanding(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity) {
     super.onLanding(world, pos, fallingBlockState, currentStateInPos, fallingBlockEntity);
     if (ConcretePowderBlockMixin.invokeShouldHarden(world, pos, currentStateInPos)) {
-      world.setBlockState(pos, this.getBlock().getHardenedBlockState(fallingBlockState));
+      // Cannot use fallingBlockState as it may have been modified by super method
+      world.setBlockState(pos, this.getBlock().getHardenedBlockState(world.getBlockState(pos)));
     }
   }
 

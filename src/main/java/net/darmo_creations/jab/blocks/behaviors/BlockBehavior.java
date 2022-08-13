@@ -74,9 +74,6 @@ public class BlockBehavior {
   public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
   }
 
-  public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-  }
-
   public Optional<Boolean> emitsRedstonePower(BlockState state) {
     return Optional.empty();
   }

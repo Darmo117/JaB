@@ -45,8 +45,9 @@ public class FallingBlockBehavior extends BlockBehavior implements LandingBlock 
 
   @Override
   public void onLanding(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity) {
-    if (this.block instanceof Waterloggable && world.getFluidState(pos).getFluid() == Fluids.WATER) {
-      world.setBlockState(pos, fallingBlockState.with(Properties.WATERLOGGED, true));
+    if (this.block instanceof Waterloggable wb && world.getFluidState(pos).getFluid() == Fluids.WATER) {
+      boolean fill = wb.canFillWithFluid(world, pos, fallingBlockState.with(Properties.WATERLOGGED, false), Fluids.WATER);
+      world.setBlockState(pos, fallingBlockState.with(Properties.WATERLOGGED, fill));
     }
   }
 
