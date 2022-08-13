@@ -1,5 +1,9 @@
-package net.darmo_creations.jab.blocks;
+package net.darmo_creations.jab.blocks.slabs;
 
+import net.darmo_creations.jab.blocks.BlockMaterial;
+import net.darmo_creations.jab.blocks.DecoratedBlock;
+import net.darmo_creations.jab.blocks.ModBlocks;
+import net.darmo_creations.jab.blocks.WaxedBlock;
 import net.darmo_creations.jab.blocks.behaviors.WaxedBlockBehavior;
 import net.minecraft.block.BlockState;
 

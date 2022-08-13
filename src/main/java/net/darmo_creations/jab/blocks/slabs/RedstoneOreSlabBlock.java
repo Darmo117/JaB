@@ -1,5 +1,7 @@
-package net.darmo_creations.jab.blocks;
+package net.darmo_creations.jab.blocks.slabs;
 
+import net.darmo_creations.jab.blocks.BlockMaterial;
+import net.darmo_creations.jab.blocks.DecoratedBlock;
 import net.darmo_creations.jab.blocks.behaviors.RedstoneOreBlockBehavior;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

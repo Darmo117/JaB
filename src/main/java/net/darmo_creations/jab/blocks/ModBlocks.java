@@ -2,6 +2,7 @@ package net.darmo_creations.jab.blocks;
 
 import net.darmo_creations.jab.JaB;
 import net.darmo_creations.jab.blocks.behaviors.*;
+import net.darmo_creations.jab.blocks.slabs.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;

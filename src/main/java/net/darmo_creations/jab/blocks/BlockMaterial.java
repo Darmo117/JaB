@@ -8,7 +8,6 @@ import net.minecraft.client.render.RenderLayer;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 
 /**
  * A material specifies the base block and behavior to apply to a {@link DecoratedBlock}.

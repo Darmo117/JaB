@@ -1,5 +1,8 @@
-package net.darmo_creations.jab.blocks;
+package net.darmo_creations.jab.blocks.slabs;
 
+import net.darmo_creations.jab.blocks.BlockMaterial;
+import net.darmo_creations.jab.blocks.DecoratedBlock;
+import net.darmo_creations.jab.blocks.GravityBlock;
 import net.darmo_creations.jab.blocks.behaviors.FallingBlockBehavior;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;

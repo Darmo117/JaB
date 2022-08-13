@@ -1,5 +1,8 @@
-package net.darmo_creations.jab.blocks;
+package net.darmo_creations.jab.blocks.slabs;
 
+import net.darmo_creations.jab.blocks.BlockMaterial;
+import net.darmo_creations.jab.blocks.LivingCoralBlock;
+import net.darmo_creations.jab.blocks.ModBlocks;
 import net.minecraft.block.BlockState;
 
 /**
