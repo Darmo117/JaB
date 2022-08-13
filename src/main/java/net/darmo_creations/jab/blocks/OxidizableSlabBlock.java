@@ -24,6 +24,11 @@ public class OxidizableSlabBlock extends DecoratedSlabBlock implements Oxidizabl
   }
 
   @Override
+  public BlockState getPreviousOxidationBlockState(BlockState blockState) {
+    return ModBlocks.SLABS.get(this.getMaterial().getPreviousOxidationMaterial()).getStateWithProperties(blockState);
+  }
+
+  @Override
   public Optional<BlockState> getDegradationResult(BlockState state) {
     return this.getBehavior().getDegradationResult(state);
   }
@@ -31,5 +36,10 @@ public class OxidizableSlabBlock extends DecoratedSlabBlock implements Oxidizabl
   @Override
   public OxidationLevel getDegradationLevel() {
     return this.getMaterial().getOxidationLevel();
+  }
+
+  @Override
+  public BlockState getWaxedBlockState(BlockState blockState) {
+    return ModBlocks.SLABS.get(this.getMaterial().getWaxedMaterial()).getStateWithProperties(blockState);
   }
 }

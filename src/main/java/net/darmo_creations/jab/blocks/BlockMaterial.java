@@ -8,6 +8,7 @@ import net.minecraft.client.render.RenderLayer;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 /**
  * A material specifies the base block and behavior to apply to a {@link DecoratedBlock}.
@@ -185,18 +186,18 @@ public enum BlockMaterial {
   EXPOSED_COPPER("exposed_copper", Blocks.EXPOSED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
   WEATHERED_COPPER("weathered_copper", Blocks.WEATHERED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
   OXIDIZED_COPPER("oxidized_copper", Blocks.OXIDIZED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_COPPER("waxed_copper", Blocks.WAXED_COPPER_BLOCK, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_EXPOSED_COPPER("waxed_exposed_copper", Blocks.WAXED_EXPOSED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_WEATHERED_COPPER("waxed_weathered_copper", Blocks.WAXED_WEATHERED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_OXIDIZED_COPPER("waxed_oxidized_copper", Blocks.WAXED_OXIDIZED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
+  WAXED_COPPER("waxed_copper", Blocks.WAXED_COPPER_BLOCK, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
+  WAXED_EXPOSED_COPPER("waxed_exposed_copper", Blocks.WAXED_EXPOSED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
+  WAXED_WEATHERED_COPPER("waxed_weathered_copper", Blocks.WAXED_WEATHERED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
+  WAXED_OXIDIZED_COPPER("waxed_oxidized_copper", Blocks.WAXED_OXIDIZED_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
   CUT_COPPER("cut_copper", Blocks.CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
   EXPOSED_CUT_COPPER("exposed_cut_copper", Blocks.EXPOSED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
   WEATHERED_CUT_COPPER("weathered_cut_copper", Blocks.WEATHERED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
   OXIDIZED_CUT_COPPER("oxidized_cut_copper", Blocks.OXIDIZED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_CUT_COPPER("waxed_cut_copper", Blocks.WAXED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_CUT_EXPOSED_COPPER("waxed_exposed_cut_copper", Blocks.WAXED_EXPOSED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_CUT_WEATHERED_COPPER("waxed_weathered_cut_copper", Blocks.WAXED_WEATHERED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
-  WAXED_CUT_OXIDIZED_COPPER("waxed_oxidized_cut_copper", Blocks.WAXED_OXIDIZED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, OxidizableBlockBehavior.class),
+  WAXED_CUT_COPPER("waxed_cut_copper", Blocks.WAXED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
+  WAXED_EXPOSED_CUT_COPPER("waxed_exposed_cut_copper", Blocks.WAXED_EXPOSED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
+  WAXED_WEATHERED_CUT_COPPER("waxed_weathered_cut_copper", Blocks.WAXED_WEATHERED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
+  WAXED_OXIDIZED_CUT_COPPER("waxed_oxidized_cut_copper", Blocks.WAXED_OXIDIZED_CUT_COPPER, ButtonType.STONE, PressurePlateType.LIGHT, WaxedBlockBehavior.class),
   DIAMOND("diamond", Blocks.DIAMOND_BLOCK, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
   EMERALD("emerald", Blocks.EMERALD_BLOCK, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
   IRON("iron", Blocks.IRON_BLOCK, ButtonType.STONE, PressurePlateType.HEAVY, BlockBehavior.class),
@@ -348,6 +349,16 @@ public enum BlockMaterial {
   }
 
   /**
+   * Returns whether this material is oxidizable and waxed.
+   */
+  public boolean isWaxed() {
+    return Arrays.asList(
+        WAXED_COPPER, WAXED_EXPOSED_COPPER, WAXED_WEATHERED_COPPER, WAXED_OXIDIZED_COPPER,
+        WAXED_CUT_COPPER, WAXED_EXPOSED_CUT_COPPER, WAXED_WEATHERED_CUT_COPPER, WAXED_OXIDIZED_CUT_COPPER
+    ).contains(this);
+  }
+
+  /**
    * Returns the hardened concrete material associated to this material.
    * Will be null for materials that are not a type of concrete powder.
    */
@@ -405,18 +416,62 @@ public enum BlockMaterial {
   }
 
   /**
+   * Returns the previous oxidation material for this material.
+   * Will be null for materials that are not a type of oxidized copper.
+   */
+  public BlockMaterial getPreviousOxidationMaterial() {
+    return switch (this) {
+      case EXPOSED_COPPER -> COPPER;
+      case WEATHERED_COPPER -> EXPOSED_COPPER;
+      case OXIDIZED_COPPER -> WEATHERED_COPPER;
+      case EXPOSED_CUT_COPPER -> CUT_COPPER;
+      case WEATHERED_CUT_COPPER -> EXPOSED_CUT_COPPER;
+      case OXIDIZED_CUT_COPPER -> WEATHERED_CUT_COPPER;
+      default -> null;
+    };
+  }
+
+  /**
    * Returns the oxidation level for this material.
    * Will be null for materials that are not a type of copper.
    */
   public Oxidizable.OxidationLevel getOxidationLevel() {
     return switch (this) {
       case COPPER, WAXED_COPPER, CUT_COPPER, WAXED_CUT_COPPER -> Oxidizable.OxidationLevel.UNAFFECTED;
-      case EXPOSED_COPPER, WAXED_EXPOSED_COPPER, EXPOSED_CUT_COPPER, WAXED_CUT_EXPOSED_COPPER ->
+      case EXPOSED_COPPER, WAXED_EXPOSED_COPPER, EXPOSED_CUT_COPPER, WAXED_EXPOSED_CUT_COPPER ->
           Oxidizable.OxidationLevel.EXPOSED;
-      case WEATHERED_COPPER, WAXED_WEATHERED_COPPER, WEATHERED_CUT_COPPER, WAXED_CUT_WEATHERED_COPPER ->
+      case WEATHERED_COPPER, WAXED_WEATHERED_COPPER, WEATHERED_CUT_COPPER, WAXED_WEATHERED_CUT_COPPER ->
           Oxidizable.OxidationLevel.WEATHERED;
-      case OXIDIZED_COPPER, WAXED_OXIDIZED_COPPER, OXIDIZED_CUT_COPPER, WAXED_CUT_OXIDIZED_COPPER ->
+      case OXIDIZED_COPPER, WAXED_OXIDIZED_COPPER, OXIDIZED_CUT_COPPER, WAXED_OXIDIZED_CUT_COPPER ->
           Oxidizable.OxidationLevel.OXIDIZED;
+      default -> null;
+    };
+  }
+
+  public BlockMaterial getWaxedMaterial() {
+    return switch (this) {
+      case COPPER -> WAXED_COPPER;
+      case EXPOSED_COPPER -> WAXED_EXPOSED_COPPER;
+      case WEATHERED_COPPER -> WAXED_WEATHERED_COPPER;
+      case OXIDIZED_COPPER -> WAXED_OXIDIZED_COPPER;
+      case CUT_COPPER -> WAXED_CUT_COPPER;
+      case EXPOSED_CUT_COPPER -> WAXED_EXPOSED_CUT_COPPER;
+      case WEATHERED_CUT_COPPER -> WAXED_WEATHERED_CUT_COPPER;
+      case OXIDIZED_CUT_COPPER -> WAXED_OXIDIZED_CUT_COPPER;
+      default -> null;
+    };
+  }
+
+  public BlockMaterial getUnwaxedMaterial() {
+    return switch (this) {
+      case WAXED_COPPER -> COPPER;
+      case WAXED_EXPOSED_COPPER -> EXPOSED_COPPER;
+      case WAXED_WEATHERED_COPPER -> WEATHERED_COPPER;
+      case WAXED_OXIDIZED_COPPER -> OXIDIZED_COPPER;
+      case WAXED_CUT_COPPER -> CUT_COPPER;
+      case WAXED_EXPOSED_CUT_COPPER -> EXPOSED_CUT_COPPER;
+      case WAXED_WEATHERED_CUT_COPPER -> WEATHERED_CUT_COPPER;
+      case WAXED_OXIDIZED_CUT_COPPER -> OXIDIZED_CUT_COPPER;
       default -> null;
     };
   }

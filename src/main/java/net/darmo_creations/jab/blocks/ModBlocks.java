@@ -62,6 +62,7 @@ public final class ModBlocks {
         LivingCoralSlabBlock::new,
         RedstoneOreSlabBlock::new,
         OxidizableSlabBlock::new,
+        WaxedSlabBlock::new,
         BlockMaterial.ANCIENT_DEBRIS,
         BlockMaterial.BEDROCK,
         BlockMaterial.CALCITE,
@@ -258,12 +259,21 @@ public final class ModBlocks {
       final Function<BlockMaterial, ? extends DecoratedBlock> livingCoralBlockProvider,
       final Function<BlockMaterial, ? extends DecoratedBlock> redstoneOreBlockProvider,
       final Function<BlockMaterial, ? extends DecoratedBlock> oxidizableBlockProvider,
+      final Function<BlockMaterial, ? extends DecoratedBlock> waxedBlockProvider,
       final BlockMaterial... materials
   ) {
     Objects.requireNonNull(suffix);
     Arrays.stream(materials).forEach(material -> {
-      Function<BlockMaterial, ? extends DecoratedBlock> blockProvider = getBlockProvider(material, genericBlockProvider, fallingBlockProvider,
-          concretePowderBlockProvider, livingCoralBlockProvider, redstoneOreBlockProvider, oxidizableBlockProvider);
+      Function<BlockMaterial, ? extends DecoratedBlock> blockProvider = getBlockProvider(
+          material,
+          genericBlockProvider,
+          fallingBlockProvider,
+          concretePowderBlockProvider,
+          livingCoralBlockProvider,
+          redstoneOreBlockProvider,
+          oxidizableBlockProvider,
+          waxedBlockProvider
+      );
       DecoratedBlock block = blockProvider.apply(material);
       registry.put(material, register(material.getName() + suffix, (Block) block));
       setFlammability(block);
@@ -296,7 +306,8 @@ public final class ModBlocks {
       Function<BlockMaterial, ? extends DecoratedBlock> concretePowderBlockProvider,
       Function<BlockMaterial, ? extends DecoratedBlock> livingCoralBlockProvider,
       Function<BlockMaterial, ? extends DecoratedBlock> redstoneOreBlockProvider,
-      final Function<BlockMaterial, ? extends DecoratedBlock> oxidizableBlockProvider
+      final Function<BlockMaterial, ? extends DecoratedBlock> oxidizableBlockProvider,
+      final Function<BlockMaterial, ? extends DecoratedBlock> waxedBlockProvider
   ) {
     Function<BlockMaterial, ? extends DecoratedBlock> blockProvider;
     if (material.getBlockBehaviorClass() == FallingBlockBehavior.class) {
@@ -309,6 +320,8 @@ public final class ModBlocks {
       blockProvider = redstoneOreBlockProvider;
     } else if (material.getBlockBehaviorClass() == OxidizableBlockBehavior.class) {
       blockProvider = oxidizableBlockProvider;
+    } else if (material.getBlockBehaviorClass() == WaxedBlockBehavior.class) {
+      blockProvider = waxedBlockProvider;
     } else {
       blockProvider = genericBlockProvider;
     }
