@@ -49,7 +49,7 @@ public enum BlockMaterial {
   BLACK_CONCRETE("black_concrete", Blocks.BLACK_CONCRETE, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
 
   CHISELED_DEEPSLATE("chiseled_deepslate", Blocks.CHISELED_DEEPSLATE, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
-  CHISELED_NETHER_BRICKS("chiseled_netherbrick", Blocks.CHISELED_NETHER_BRICKS, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
+  CHISELED_NETHER_BRICKS("chiseled_nether_brick", Blocks.CHISELED_NETHER_BRICKS, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
   CHISELED_POLISHED_BLACKSTONE("chiseled_polished_blackstone", Blocks.CHISELED_POLISHED_BLACKSTONE, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
   CHISELED_QUARTZ_BLOCK("chiseled_quartz_block", Blocks.CHISELED_QUARTZ_BLOCK, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
   CHISELED_RED_SANDSTONE("chiseled_red_sandstone", Blocks.CHISELED_RED_SANDSTONE, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
