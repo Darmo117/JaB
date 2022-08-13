@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 /**
  * Marks a block as being living coral.
  */
-public interface LivingCoralBlock {
+public interface LivingCoralBlock extends DecoratedBlock {
   /**
    * Returns the dead coral block state that corresponds to this block.
    * The resulting block state should have the same property values as the argument.
