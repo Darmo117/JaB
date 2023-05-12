@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 /**
  * Mod’s main class.
  */
-public class JaB implements ModInitializer {
+public class JusquAuBout implements ModInitializer {
   public static final String MOD_ID = "jab";
 
   // Creative mode’s item groups

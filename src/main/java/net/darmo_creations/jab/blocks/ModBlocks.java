@@ -344,8 +344,8 @@ public final class ModBlocks {
    * @return The registered block.
    */
   private static <T extends Block> T register(final String name, final T block) {
-    Registry.register(Registry.BLOCK, new Identifier(JaB.MOD_ID, name), block);
-    Registry.register(Registry.ITEM, new Identifier(JaB.MOD_ID, name), new BlockItem(block, new FabricItemSettings().group(JaB.ITEM_GROUP)));
+    Registry.register(Registry.BLOCK, new Identifier(JusquAuBout.MOD_ID, name), block);
+    Registry.register(Registry.ITEM, new Identifier(JusquAuBout.MOD_ID, name), new BlockItem(block, new FabricItemSettings().group(JusquAuBout.ITEM_GROUP)));
     return block;
   }
 
