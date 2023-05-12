@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "jab:block/slab/packed_ice_slab"
+    },
+    "type=top": {
+      "model": "jab:block/slab/packed_ice_slab_top"
+    },
+    "type=double": {
+      "model": "minecraft:block/packed_ice"
+    }
+  }
+}

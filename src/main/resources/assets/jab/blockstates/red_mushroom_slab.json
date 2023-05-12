@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "jab:block/slab/red_mushroom_slab"
+    },
+    "type=top": {
+      "model": "jab:block/slab/red_mushroom_slab_top"
+    },
+    "type=double": {
+      "model": "jab:block/red_mushroom_block"
+    }
+  }
+}
