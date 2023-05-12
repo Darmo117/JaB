@@ -236,7 +236,6 @@ public enum BlockMaterial {
   COARSE_DIRT("coarse_dirt", Blocks.COARSE_DIRT, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
   CRIMSON_NYLIUM("crimson_nylium", Blocks.CRIMSON_NYLIUM, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class), // TODO
   DIRT("dirt", Blocks.DIRT, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class),
-  DRIED_KELP("dried_kelp", Blocks.DRIED_KELP_BLOCK, ButtonType.WOOD, PressurePlateType.WOOD, BlockBehavior.class),
   GRASS("grass", Blocks.GRASS_BLOCK, ButtonType.STONE, PressurePlateType.STONE, BlockBehavior.class), // TODO
   HONEYCOMB("honeycomb", Blocks.HONEYCOMB_BLOCK, ButtonType.WOOD, PressurePlateType.WOOD, BlockBehavior.class),
   ICE("ice", Blocks.ICE, ButtonType.STONE, PressurePlateType.STONE, IceBlockBehavior.class, RenderLayer.getTranslucent()),

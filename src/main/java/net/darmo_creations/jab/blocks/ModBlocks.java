@@ -1,6 +1,6 @@
 package net.darmo_creations.jab.blocks;
 
-import net.darmo_creations.jab.JaB;
+import net.darmo_creations.jab.JusquAuBout;
 import net.darmo_creations.jab.blocks.behaviors.*;
 import net.darmo_creations.jab.blocks.slabs.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -215,7 +215,6 @@ public final class ModBlocks {
         BlockMaterial.COARSE_DIRT,
         BlockMaterial.CRIMSON_NYLIUM,
         BlockMaterial.DIRT,
-        BlockMaterial.DRIED_KELP,
         BlockMaterial.GRASS,
         BlockMaterial.HONEYCOMB,
         BlockMaterial.MOSS,
