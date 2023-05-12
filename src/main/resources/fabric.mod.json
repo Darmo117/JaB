@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Jusqu’au bout",
-  "description": "A simple mod that adds decorating blocks missing from Vanilla.",
+  "description": "A simple mod that adds blocks missing from the base game.",
   "authors": [
     "Darmo"
   ],
@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.darmo_creations.jab.JaB"
+      "net.darmo_creations.jab.JusquAuBout"
     ]
   },
   "mixins": [
